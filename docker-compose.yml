@@ -1,0 +1,28 @@
+version: "2.4"
+services:
+  ui:
+    image: proxima_ui
+    container_name: proxima_ui
+    ports:
+      - 80:3000
+    build:
+      context: ui
+      args:
+        - DIAGORIENTE_API_BASE_URL=${DIAGORIENTE_API_BASE_URL}
+        - EXPOSITION_API_BASE_URL=${EXPOSITION_API_BASE_URL}
+        - EXPOSITION_API_KEY=${EXPOSITION_API_KEY}
+        - USE_API_STATIC_FILE=${USE_API_STATIC_FILE}
+        - BASE_PATH=${BASE_PATH}
+    environment:
+      - DIAGORIENTE_API_BASE_URL=${DIAGORIENTE_API_BASE_URL}
+      - EXPOSITION_API_BASE_URL=${EXPOSITION_API_BASE_URL}
+      - EXPOSITION_API_KEY=${EXPOSITION_API_KEY}
+      - USE_API_STATIC_FILE=${USE_API_STATIC_FILE}
+      - BASE_PATH=${BASE_PATH}
+    mem_limit: 256m
+    networks:
+      - proxima_network
+
+networks:
+  proxima_network:
+    name: proxima_network
