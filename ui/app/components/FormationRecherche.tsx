@@ -22,7 +22,7 @@ export default async function FormationRercherche({ searchParams }: any) {
   return (
     <FormationRechercheResult
       searchParams={{
-        cfds: searchFormations.split(),
+        cfds: searchFormations.split(','),
         distance: searchDistance,
         postCode: searchPostCode,
       }}
