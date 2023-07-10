@@ -1,6 +1,7 @@
 import 'server-only';
 
-import { Container, Grid, Typograhpy } from './MaterialUINext';
+import { Grid, Typograhpy } from './MaterialUINext';
+import Container from '#/app/components/Container';
 import FormationRechercheResult from '#/app/components/FormationRechercheResult';
 import FormationList from '#/app/components/FormationList';
 import dynamic from 'next/dynamic';
