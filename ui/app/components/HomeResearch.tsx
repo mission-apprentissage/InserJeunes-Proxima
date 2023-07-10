@@ -43,6 +43,10 @@ export default function HomeResearch({
       .filter(({ cfd }) => !!cfd) || [];
   const searchDistance = parseInt(searchParams.get('distance') || '10');
   const searchPostCode = searchParams.get('postCode') || '';
+  const abTesting =
+    searchParams.get('abTesting') && searchParams.get('abTesting') === '1'
+      ? true
+      : false;
 
   type FormData = {
     formations: FormationType[];
@@ -67,6 +71,7 @@ export default function HomeResearch({
       formations: data.formations.map((f) => f.cfd).join(','),
       distance: data.distance.toString(),
       postCode: data.postCode || '',
+      abTesting: abTesting ? '1' : '0',
     });
     router.push(`/recherche/?${urlParams}`);
   });

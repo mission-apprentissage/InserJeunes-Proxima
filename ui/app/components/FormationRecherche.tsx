@@ -1,6 +1,6 @@
 import 'server-only';
 
-import { Grid } from './MaterialUINext';
+import { Container, Grid, Typograhpy } from './MaterialUINext';
 import FormationRechercheResult from '#/app/components/FormationRechercheResult';
 import FormationList from '#/app/components/FormationList';
 import dynamic from 'next/dynamic';
@@ -12,6 +12,7 @@ const FormationMap = dynamic(() => import('#/app/components/FormationMap'), {
 });
 
 export default async function FormationRercherche({ searchParams }: any) {
+  const abTesting = searchParams?.abTesting === '1' ? true : false;
   const searchFormations = searchParams?.formations;
   const searchDistance = searchParams?.distance;
   const searchPostCode = searchParams?.postCode;
@@ -56,6 +57,12 @@ export default async function FormationRercherche({ searchParams }: any) {
                   display: 'flex',
                 }}
               >
+                <Container nopadding>
+                  <Typograhpy variant='h3'>
+                    Liste des formations similaires
+                  </Typograhpy>
+                </Container>
+
                 {/* <Container nopadding>
                   <Checkbox
                     small
@@ -73,7 +80,11 @@ export default async function FormationRercherche({ searchParams }: any) {
                   />
                 </Container> */}
                 <div style={{ flex: '1 1 auto' }}>
-                  <FormationList metrics={metrics} formations={formations} />
+                  <FormationList
+                    metrics={metrics}
+                    formations={formations}
+                    abTesting={abTesting}
+                  />
                 </div>
               </div>
             </Grid>

@@ -18,7 +18,7 @@ const cache = new CellMeasurerCache({
   fixedWidth: true,
 });
 
-function FormationItem({ formation, metrics }: any) {
+function FormationItem({ formation, metrics, abTesting }: any) {
   const metric = metrics.get(formation.cfd);
 
   return (
@@ -33,117 +33,123 @@ function FormationItem({ formation, metrics }: any) {
             <Typograhpy variant='body2'>
               {formation.postCode} {formation.city}
             </Typograhpy>
-            <Typograhpy component='div' variant='body2'>
-              <Box
-                sx={{
-                  fontStyle: 'italic',
-                  color: 'var(--grey-625-425)',
-                }}
-              >
-                {Math.round(formation.distance)} km(s) du lieu de recherche
-              </Box>
-            </Typograhpy>
-            <Stack mt={fr.spacing('2v')} spacing={1}>
-              {formation.isApprentissage ? (
-                <Tag
-                  style={{
-                    backgroundColor: '#00AC8C',
-                    borderRadius: '0.5rem',
-                    fontWeight: '700',
+            {abTesting && (
+              <Typograhpy component='div' variant='body2'>
+                <Box
+                  sx={{
+                    fontStyle: 'italic',
+                    color: 'var(--grey-625-425)',
                   }}
-                  iconId={'fr-icon-briefcase-fill'}
                 >
-                  Contrat apprentissage
-                </Tag>
-              ) : (
-                <Tag
-                  style={{
-                    backgroundColor: '#AFAFF9',
-                    borderRadius: '0.5rem',
-                    fontWeight: '700',
-                  }}
-                  iconId={'fr-icon-briefcase-fill'}
-                >
-                  Voie scolaire
-                </Tag>
-              )}
-            </Stack>
+                  {Math.round(formation.distance)} km(s) du lieu de recherche
+                </Box>
+              </Typograhpy>
+            )}
+            {abTesting && (
+              <Stack mt={fr.spacing('2v')} spacing={1}>
+                {formation.isApprentissage ? (
+                  <Tag
+                    style={{
+                      backgroundColor: '#00AC8C',
+                      borderRadius: '0.5rem',
+                      fontWeight: '700',
+                    }}
+                    iconId={'fr-icon-briefcase-fill'}
+                  >
+                    Contrat apprentissage
+                  </Tag>
+                ) : (
+                  <Tag
+                    style={{
+                      backgroundColor: '#AFAFF9',
+                      borderRadius: '0.5rem',
+                      fontWeight: '700',
+                    }}
+                    iconId={'fr-icon-briefcase-fill'}
+                  >
+                    Voie scolaire
+                  </Tag>
+                )}
+              </Stack>
+            )}
           </Grid>
           <Box display={{ md: 'none', lg: 'block' }}>
             <Divider orientation='vertical' sx={{ mr: '-1px' }}></Divider>
           </Box>
           <Grid item lg={5} md={12}>
-            <Stack mt={fr.spacing('2v')} spacing={1}>
-              {metric?.taux_en_emploi_6_mois !== undefined ? (
-                <Container
-                  variant='content'
-                  nopadding
-                  disableGutters
-                  style={{ padding: fr.spacing('1v') }}
-                >
-                  <Grid container>
-                    <Grid
-                      item
-                      md={6}
-                      style={{ display: 'flex', alignItems: 'center' }}
-                    >
-                      <i
-                        style={{ marginRight: fr.spacing('1v') }}
-                        className={fr.cx(
-                          'fr-icon--lg',
-                          'fr-icon-briefcase-fill'
-                        )}
-                      />
-                      <Typograhpy variant={'h2'} style={{ color: '#3A55D1' }}>
-                        {metric.taux_en_emploi_6_mois}%
-                      </Typograhpy>
+            {abTesting && (
+              <Stack mt={fr.spacing('2v')} spacing={1}>
+                {metric?.taux_en_emploi_6_mois !== undefined ? (
+                  <Container
+                    variant='content'
+                    nopadding
+                    disableGutters
+                    style={{ padding: fr.spacing('1v') }}
+                  >
+                    <Grid container>
+                      <Grid
+                        item
+                        md={6}
+                        style={{ display: 'flex', alignItems: 'center' }}
+                      >
+                        <i
+                          style={{ marginRight: fr.spacing('1v') }}
+                          className={fr.cx(
+                            'fr-icon--lg',
+                            'fr-icon-briefcase-fill'
+                          )}
+                        />
+                        <Typograhpy variant={'h2'} style={{ color: '#3A55D1' }}>
+                          {metric.taux_en_emploi_6_mois}%
+                        </Typograhpy>
+                      </Grid>
+                      <Grid item md={6}>
+                        <Typograhpy variant='body2'>
+                          en emploi au bout de 6 mois
+                        </Typograhpy>
+                      </Grid>
                     </Grid>
-                    <Grid item md={6}>
-                      <Typograhpy variant='body2'>
-                        en emploi au bout de 6 mois
-                      </Typograhpy>
-                    </Grid>
-                  </Grid>
-                </Container>
-              ) : (
-                <></>
-              )}
+                  </Container>
+                ) : (
+                  <></>
+                )}
 
-              {metric?.taux_en_formation !== undefined ? (
-                <Container
-                  variant='content'
-                  nopadding
-                  disableGutters
-                  style={{ padding: fr.spacing('1v') }}
-                >
-                  <Grid container>
-                    <Grid
-                      item
-                      md={6}
-                      style={{ display: 'flex', alignItems: 'center' }}
-                    >
-                      <i
-                        style={{ marginRight: fr.spacing('1v') }}
-                        className={fr.cx(
-                          'fr-icon--lg',
-                          'ri-graduation-cap-line'
-                        )}
-                      />
-                      <Typograhpy variant={'h2'} style={{ color: '#3A55D1' }}>
-                        {metric.taux_en_formation}%
-                      </Typograhpy>
+                {metric?.taux_en_formation !== undefined ? (
+                  <Container
+                    variant='content'
+                    nopadding
+                    disableGutters
+                    style={{ padding: fr.spacing('1v') }}
+                  >
+                    <Grid container>
+                      <Grid
+                        item
+                        md={6}
+                        style={{ display: 'flex', alignItems: 'center' }}
+                      >
+                        <i
+                          style={{ marginRight: fr.spacing('1v') }}
+                          className={fr.cx(
+                            'fr-icon--lg',
+                            'ri-graduation-cap-line'
+                          )}
+                        />
+                        <Typograhpy variant={'h2'} style={{ color: '#3A55D1' }}>
+                          {metric.taux_en_formation}%
+                        </Typograhpy>
+                      </Grid>
+                      <Grid item md={6}>
+                        <Typograhpy variant='body2'>
+                          inscrits en formation
+                        </Typograhpy>
+                      </Grid>
                     </Grid>
-                    <Grid item md={6}>
-                      <Typograhpy variant='body2'>
-                        inscrits en formation
-                      </Typograhpy>
-                    </Grid>
-                  </Grid>
-                </Container>
-              ) : (
-                <></>
-              )}
-            </Stack>
+                  </Container>
+                ) : (
+                  <></>
+                )}
+              </Stack>
+            )}
           </Grid>
         </Grid>
       </Container>
@@ -151,7 +157,7 @@ function FormationItem({ formation, metrics }: any) {
   );
 }
 
-export default function FormationList({ formations, metrics }: any) {
+export default function FormationList({ formations, metrics, abTesting }: any) {
   const metricsMap = new Map(metrics);
   let listRef: List | null = null;
   const [width, height] = useWindowSize();
@@ -186,6 +192,7 @@ export default function FormationList({ formations, metrics }: any) {
                     <FormationItem
                       formation={formations[index]}
                       metrics={metricsMap}
+                      abTesting={abTesting}
                     />
                   </div>
                 </CellMeasurer>
