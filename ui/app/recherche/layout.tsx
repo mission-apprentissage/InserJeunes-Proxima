@@ -22,7 +22,7 @@ export default async function RechercheLayout({
           margin: 'auto',
           //maxWidth: 1200,
 
-          backgroundColor: ' var(--background-alt-grey)',
+          backgroundColor: ' var(--background-alt-blue-france)',
         }}
       >
         {children}

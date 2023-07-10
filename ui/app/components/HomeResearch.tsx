@@ -41,7 +41,7 @@ export default function HomeResearch({
         title: formations.find(({ cfd }) => cfd === f)?.title || '',
       }))
       .filter(({ cfd }) => !!cfd) || [];
-  const searchDistance = parseInt(searchParams.get('distance') || '10');
+  const searchDistance = parseInt(searchParams.get('distance') || '20');
   const searchPostCode = searchParams.get('postCode') || '';
   const abTesting =
     searchParams.get('abTesting') && searchParams.get('abTesting') === '1'
@@ -79,7 +79,7 @@ export default function HomeResearch({
   return (
     <form autoComplete='off' onSubmit={onSubmit} style={{ flex: '1' }}>
       <Grid container spacing={2}>
-        <Grid item md={6} xs={12}>
+        <Grid item md={5.8} xs={12}>
           <Controller
             name='formations'
             control={control}
@@ -91,7 +91,7 @@ export default function HomeResearch({
             )}
           />
         </Grid>
-        <Grid item md={2} xs={6}>
+        <Grid item md={1.7} xs={6}>
           <Controller
             name='postCode'
             control={control}
@@ -100,7 +100,7 @@ export default function HomeResearch({
             )}
           />
         </Grid>
-        <Grid item md={2} xs={6}>
+        <Grid item md={2} xs={6} style={{ display: 'none' }}>
           <Controller
             name='distance'
             control={control}
@@ -109,9 +109,14 @@ export default function HomeResearch({
             )}
           />
         </Grid>
-        <Grid item md={2} xs={4}>
-          <Button type={'submit'} style={{ height: '100%' }}>
-            {t('Rechercher')}
+        <Grid item md={4.5} xs={4} style={{ textAlign: 'left' }}>
+          <Button
+            type={'submit'}
+            style={{ height: '100%' }}
+            className='fr-btn-fix'
+            iconId={'fr-icon-search-line'}
+          >
+            {t('Rechercher des formations similaires')}
           </Button>
         </Grid>
       </Grid>

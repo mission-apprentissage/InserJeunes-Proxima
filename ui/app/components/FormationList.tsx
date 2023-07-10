@@ -25,7 +25,7 @@ function FormationItem({ formation, metrics, abTesting }: any) {
     <Grid item md={12} xs={12} style={{ margin: fr.spacing('2v') }}>
       <Container variant='subContent'>
         <Grid container spacing={2}>
-          <Grid item lg={7} md={12} xs={12}>
+          <Grid item lg={abTesting ? 7 : 12} md={12} xs={12}>
             <Typograhpy variant='h6'>{formation.title}</Typograhpy>
             <Typograhpy mt={fr.spacing('2v')} mb={fr.spacing('2v')}>
               {formation.etablissement}
@@ -73,84 +73,92 @@ function FormationItem({ formation, metrics, abTesting }: any) {
               </Stack>
             )}
           </Grid>
-          <Box display={{ md: 'none', lg: 'block' }}>
-            <Divider orientation='vertical' sx={{ mr: '-1px' }}></Divider>
-          </Box>
-          <Grid item lg={5} md={12}>
-            {abTesting && (
-              <Stack mt={fr.spacing('2v')} spacing={1}>
-                {metric?.taux_en_emploi_6_mois !== undefined ? (
-                  <Container
-                    variant='content'
-                    nopadding
-                    disableGutters
-                    style={{ padding: fr.spacing('1v') }}
-                  >
-                    <Grid container>
-                      <Grid
-                        item
-                        md={6}
-                        style={{ display: 'flex', alignItems: 'center' }}
-                      >
-                        <i
-                          style={{ marginRight: fr.spacing('1v') }}
-                          className={fr.cx(
-                            'fr-icon--lg',
-                            'fr-icon-briefcase-fill'
-                          )}
-                        />
-                        <Typograhpy variant={'h2'} style={{ color: '#3A55D1' }}>
-                          {metric.taux_en_emploi_6_mois}%
-                        </Typograhpy>
+          {abTesting && (
+            <>
+              <Box display={{ md: 'none', lg: 'block' }}>
+                <Divider orientation='vertical' sx={{ mr: '-1px' }}></Divider>
+              </Box>
+              <Grid item lg={5} md={12}>
+                <Stack mt={fr.spacing('2v')} spacing={1}>
+                  {metric?.taux_en_emploi_6_mois !== undefined ? (
+                    <Container
+                      variant='content'
+                      nopadding
+                      disableGutters
+                      style={{ padding: fr.spacing('1v') }}
+                    >
+                      <Grid container>
+                        <Grid
+                          item
+                          md={6}
+                          style={{ display: 'flex', alignItems: 'center' }}
+                        >
+                          <i
+                            style={{ marginRight: fr.spacing('1v') }}
+                            className={fr.cx(
+                              'fr-icon--lg',
+                              'fr-icon-briefcase-fill'
+                            )}
+                          />
+                          <Typograhpy
+                            variant={'h2'}
+                            style={{ color: '#3A55D1' }}
+                          >
+                            {metric.taux_en_emploi_6_mois}%
+                          </Typograhpy>
+                        </Grid>
+                        <Grid item md={6}>
+                          <Typograhpy variant='body2'>
+                            en emploi au bout de 6 mois
+                          </Typograhpy>
+                        </Grid>
                       </Grid>
-                      <Grid item md={6}>
-                        <Typograhpy variant='body2'>
-                          en emploi au bout de 6 mois
-                        </Typograhpy>
-                      </Grid>
-                    </Grid>
-                  </Container>
-                ) : (
-                  <></>
-                )}
+                    </Container>
+                  ) : (
+                    <></>
+                  )}
 
-                {metric?.taux_en_formation !== undefined ? (
-                  <Container
-                    variant='content'
-                    nopadding
-                    disableGutters
-                    style={{ padding: fr.spacing('1v') }}
-                  >
-                    <Grid container>
-                      <Grid
-                        item
-                        md={6}
-                        style={{ display: 'flex', alignItems: 'center' }}
-                      >
-                        <i
-                          style={{ marginRight: fr.spacing('1v') }}
-                          className={fr.cx(
-                            'fr-icon--lg',
-                            'ri-graduation-cap-line'
-                          )}
-                        />
-                        <Typograhpy variant={'h2'} style={{ color: '#3A55D1' }}>
-                          {metric.taux_en_formation}%
-                        </Typograhpy>
+                  {metric?.taux_en_formation !== undefined ? (
+                    <Container
+                      variant='content'
+                      nopadding
+                      disableGutters
+                      style={{ padding: fr.spacing('1v') }}
+                    >
+                      <Grid container>
+                        <Grid
+                          item
+                          md={6}
+                          style={{ display: 'flex', alignItems: 'center' }}
+                        >
+                          <i
+                            style={{ marginRight: fr.spacing('1v') }}
+                            className={fr.cx(
+                              'fr-icon--lg',
+                              'ri-graduation-cap-line'
+                            )}
+                          />
+                          <Typograhpy
+                            variant={'h2'}
+                            style={{ color: '#3A55D1' }}
+                          >
+                            {metric.taux_en_formation}%
+                          </Typograhpy>
+                        </Grid>
+                        <Grid item md={6}>
+                          <Typograhpy variant='body2'>
+                            inscrits en formation
+                          </Typograhpy>
+                        </Grid>
                       </Grid>
-                      <Grid item md={6}>
-                        <Typograhpy variant='body2'>
-                          inscrits en formation
-                        </Typograhpy>
-                      </Grid>
-                    </Grid>
-                  </Container>
-                ) : (
-                  <></>
-                )}
-              </Stack>
-            )}
-          </Grid>
+                    </Container>
+                  ) : (
+                    <></>
+                  )}
+                </Stack>
+              </Grid>
+            </>
+          )}
         </Grid>
       </Container>
     </Grid>

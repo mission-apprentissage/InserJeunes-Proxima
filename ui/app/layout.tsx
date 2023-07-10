@@ -7,6 +7,7 @@ import { defaultColorScheme } from './defaultColorScheme';
 import MuiDsfrThemeProvider from '@codegouvfr/react-dsfr/mui';
 import Link from 'next/link';
 import { dir } from 'i18next';
+import { GlobalStyles } from 'tss-react';
 
 export default function RootLayout({ children }: { children: JSX.Element }) {
   const lang = 'fr';
@@ -46,6 +47,29 @@ export default function RootLayout({ children }: { children: JSX.Element }) {
           flexDirection: 'column',
         }}
       >
+        <GlobalStyles
+          styles={{
+            '.fr-btn-fix': {
+              fontSize: '1rem',
+              lineHeight: '1.5rem',
+              minHeight: '2.5rem',
+              padding: '0.5rem 1rem',
+              backgroundColor:
+                'var(--background-action-high-blue-france) !important',
+              '--idle': 'transparent  !important',
+              '--hover':
+                'var(--background-action-high-blue-france-hover) !important',
+              '--active':
+                'var(--background-action-high-blue-france-active) !important',
+              color: 'var(--text-inverted-blue-france) !important',
+            },
+            '.fr-btn-fix:hover': {
+              backgroundColor:
+                'var(--background-action-high-blue-france-hover) !important',
+            },
+          }}
+        />
+
         <DsfrProvider>
           <NextAppDirEmotionCacheProvider options={{ key: 'css' }}>
             <MuiDsfrThemeProvider>{children}</MuiDsfrThemeProvider>

@@ -135,6 +135,7 @@ export default function Formation({
       onChange={(e, newValue: FormationType[]) => {
         onChange(newValue);
       }}
+      // limitTags={1}
       value={value}
       multiple
       disableListWrap
@@ -150,7 +151,11 @@ export default function Formation({
           <Chip
             {...getTagProps({ index })}
             key={option.cfd}
-            label={option.title}
+            label={
+              option.title.length > 35
+                ? option.title.substr(0, 35) + '...'
+                : option.title
+            }
           />
         ));
       }}
@@ -161,8 +166,8 @@ export default function Formation({
             helperText={error ? t('Veuillez entrer au moin un diplôme.') : ''}
             {...params}
             InputLabelProps={{ shrink: true }}
-            label={t('Diplômes')}
-            placeholder={t('Indiquez le ou les diplômes recherchés')}
+            label={t('Sélectionner des formations qui vous intéressent')}
+            placeholder={t('Cuisine, électrotechnique, secrétaire....')}
           />
         );
       }}

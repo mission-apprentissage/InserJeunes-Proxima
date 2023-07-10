@@ -40,7 +40,7 @@ export default async function FormationRercherche({ searchParams }: any) {
           >
             <Grid
               item
-              md={6}
+              md={abTesting ? 6 : 8}
               xs={12}
               style={{ paddingLeft: 0, paddingRight: 0 }}
             >
@@ -50,7 +50,7 @@ export default async function FormationRercherche({ searchParams }: any) {
               />
             </Grid>
 
-            <Grid sx={{ display: 'flex' }} item md={6} xs={12}>
+            <Grid sx={{ display: 'flex' }} item md={abTesting ? 6 : 4} xs={12}>
               <div
                 style={{
                   flex: '1 1 auto',
@@ -58,9 +58,13 @@ export default async function FormationRercherche({ searchParams }: any) {
                   display: 'flex',
                 }}
               >
-                <Container nopadding>
+                <Container>
                   <Typograhpy variant='h3'>
-                    Liste des formations similaires
+                    Ces formations pourrait vous intéresser
+                  </Typograhpy>
+                  <Typograhpy>
+                    Ces formations ont des compétences communes avec les
+                    formations que vous avez sélectionnées
                   </Typograhpy>
                 </Container>
 
