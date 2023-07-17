@@ -19,7 +19,7 @@ export default async function Page({ params }: { params: { lang: string } }) {
   return (
     <>
       <Header
-        brandTop={<>Proxima</>}
+        brandTop={<>Proxima test deploy</>}
         serviceTitle='Proxima'
         homeLinkProps={{
           href: '/',
